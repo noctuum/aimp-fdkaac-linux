@@ -1,5 +1,5 @@
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
-addopts = "-m 'not slow'"
+addopts = "-m 'not slow' -p no:asyncio"
 markers = ["slow: runs for minutes, select with -m slow"]
