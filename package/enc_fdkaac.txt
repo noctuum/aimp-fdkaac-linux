@@ -1,0 +1,13 @@
+Кодировщик AAC/M4A для конвертера AIMP 6 под Linux (x86-64). Он использует fdkaac 1.0.9 со встроенной библиотекой Fraunhofer FDK AAC (libfdk-aac 3.0.0).
+
+Три кодировщика, у каждого пресеты CBR и VBR:
+- AAC-LC: от 8000 до 96000 Гц, моно, стерео, 5.1 и 7.1;
+- HE-AAC: от 16000 до 48000 Гц, моно и стерео;
+- HE-AAC v2: от 16000 до 48000 Гц, стерео.
+
+AAC/M4A encoder for the AIMP 6 converter on Linux (x86-64). It uses fdkaac 1.0.9 with the Fraunhofer FDK AAC library (libfdk-aac 3.0.0) linked in.
+
+Three encoders, each with a CBR and a VBR preset:
+- AAC-LC: 8000 to 96000 Hz, mono, stereo, 5.1 and 7.1
+- HE-AAC: 16000 to 48000 Hz, mono and stereo
+- HE-AAC v2: 16000 to 48000 Hz, stereo

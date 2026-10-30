@@ -26,3 +26,5 @@ if [ "$first" != "fdkaac 1.0.9" ]; then
   exit 1
 fi
 echo "$first"
+
+"$PYTHON" -I /work/scripts/pack.py --out /build/out --sources /build/src --dist /dist

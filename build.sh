@@ -19,4 +19,4 @@ docker run --rm --network none --user "$(id -u):$(id -g)" \
   -v "$PWD:/work:ro" -v "$PWD/build:/build" -v "$PWD/dist:/dist" \
   "$image_ref" /work/scripts/container-build.sh
 
-sha256sum build/out/fdkaac build/out/fdkaac-aimp
+sha256sum build/out/fdkaac build/out/fdkaac-aimp dist/*
