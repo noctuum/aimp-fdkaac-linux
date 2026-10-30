@@ -2,6 +2,7 @@
 
 import itertools
 import re
+import shlex
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
@@ -108,7 +109,8 @@ def expand(p: Preset) -> list[Combination]:
 
 
 def argv(cmdline: str, output: str) -> list[str]:
-    return [arg.replace(OUTPUT, output) for arg in cmdline.split()]
+    # AIMP splits cmdparams the way a shell does: quotes group words and are removed.
+    return [arg.replace(OUTPUT, output) for arg in shlex.split(cmdline)]
 
 
 def _preset_problems(where: str, p: Preset) -> list[str]:

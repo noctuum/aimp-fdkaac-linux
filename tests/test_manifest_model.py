@@ -50,6 +50,11 @@ def test_argv_keeps_the_output_whole():
     assert argv(" -b 256 -o %output% -", "/a b/Тест.m4a") == ["-b", "256", "-o", "/a b/Тест.m4a", "-"]
 
 
+def test_argv_honors_quotes_like_aimp():
+    cmdline = "--id 06 \"double quoted\" 'single quoted'  -o %output% -"
+    assert argv(cmdline, "/a b/Тест.p06") == ["--id", "06", "double quoted", "single quoted", "-o", "/a b/Тест.p06", "-"]
+
+
 def test_broken_xml_raises():
     with pytest.raises(ManifestError):
         loads("<encoders>")
