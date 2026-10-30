@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<encoders generator="AIMP" version="1000" name="AAC/M4A Encoder (FDK) v1.0.9" author="" info="Using nu774's fdkaac (https://github.com/nu774/fdkaac) with the Fraunhofer FDK AAC library (https://github.com/mstorsjo/fdk-aac)">
+	<encoder Name="AAC-LC (FDK)" App="fdkaac-aimp.exe">
+		<description>
+			<inputformats type="autogen">
+				<autogen SampleRates="8000;11025;12000;16000;22050;24000;32000;44100;48000;64000;88200;96000" SampleFormats="16" Channels="1;2" />
+			</inputformats>
+			<property name="Ext" value=".m4a" />
+			<property name="IgnoreLength" value="1" />
+		</description>
+		<presets>
+		</presets>
+	</encoder>
+	<encoder Name="HE-AAC (FDK)" App="fdkaac-aimp.exe">
+		<description>
+			<inputformats type="autogen">
+				<autogen SampleRates="16000;22050;24000;32000;44100;48000" SampleFormats="16" Channels="1;2" />
+			</inputformats>
+			<property name="Ext" value=".m4a" />
+			<property name="IgnoreLength" value="1" />
+		</description>
+		<presets>
+		</presets>
+	</encoder>
+	<encoder Name="HE-AAC v2 (FDK)" App="fdkaac-aimp.exe">
+		<description>
+			<inputformats type="autogen">
+				<autogen SampleRates="16000;22050;24000;32000;44100;48000" SampleFormats="16" Channels="2" />
+			</inputformats>
+			<property name="Ext" value=".m4a" />
+			<property name="IgnoreLength" value="1" />
+		</description>
+		<presets>
+		</presets>
+	</encoder>
+</encoders>
