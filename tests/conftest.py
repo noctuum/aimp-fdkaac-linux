@@ -16,3 +16,11 @@ def probe_bin():
             "-o build/probe/probe probe/probe.c`"
         )
     return path
+
+
+@pytest.fixture(scope="session")
+def kit():
+    path = ROOT / "tmp/probe-kit"
+    if not path.is_dir():
+        pytest.fail("tmp/probe-kit is missing: run `python3 -I probe/make_kit.py`")
+    return path

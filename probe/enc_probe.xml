@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<encoders generator="AIMP" version="1000" name="Probe v1" author="probe" info="Probe of the command-line encoder host">
+  <encoder Name="Probe 01 baseline" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="8000;11025;12000;16000;22050;24000;32000;44100;48000;64000;88200;96000;176400;192000" SampleFormats="8;16;24;32;32f" Channels="1;2;3;4;5;6;7;8" />
+      </inputformats>
+      <property name="Ext" value=".p01" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 01 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 02 x64 only" App="probe_x64.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p02" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 02 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 03 both places" App="probe_both.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p03" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 03 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 04 stored 0644" App="probe_0644.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p04" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 04 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 05 add-on or PATH" App="fdkaac.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".m4a" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="-b 128 -I -S -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 06 arguments" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p06" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 06 &quot;double quoted&quot; 'single quoted' %choice% -o %output% -" default="1">
+        <var name="Choice" cmdparams="%choice%">
+          <val name="Empty" cmdparams="" default="1" />
+          <val name="Marker" cmdparams="--marker" />
+        </var>
+      </preset>
+    </presets>
+  </encoder>
+  <encoder Name="Probe 07 IgnoreLength 1" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p07" />
+      <property name="IgnoreLength" value="1" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 07 --discard -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 08 IgnoreLength true" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p08" />
+      <property name="IgnoreLength" value="true" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 08 --discard -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 09 IgnoreLength absent" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p09" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 09 --discard -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 10 IgnoreLength 1 InputMegaByteMax" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p10" />
+      <property name="IgnoreLength" value="1" />
+      <property name="InputMegaByteMax" value="16384" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 10 --discard -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 11 integer formats" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="8000;11025;12000;16000;22050;24000;32000;44100;48000;64000;88200;96000;176400;192000" SampleFormats="8;16;24;32" Channels="1;2;3;4;5;6;7;8" />
+      </inputformats>
+      <property name="Ext" value=".p11" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 11 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 12 like AAC-LC" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="8000;11025;12000;16000;22050;24000;32000;44100;48000;64000;88200;96000" SampleFormats="16" Channels="1;2;6;8" />
+      </inputformats>
+      <property name="Ext" value=".p12" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 12 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 13 like HE-AAC v2" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="16000;22050;24000;32000;44100;48000" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p13" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 13 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 14 exit code 3" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p14" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 14 --exit 3 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 15 debug output" App="probe_root.exe" debug="1">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p15" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 15 --chatter -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 16 RequiresLength" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p16" />
+      <property name="RequiresLength" value="1" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 16 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+  <encoder Name="Probe 17 ID3" App="probe_root.exe">
+    <description>
+      <inputformats type="autogen">
+        <autogen SampleRates="44100" SampleFormats="16" Channels="2" />
+      </inputformats>
+      <property name="Ext" value=".p17" />
+      <property name="ID3" value="1" />
+    </description>
+    <presets>
+      <preset name="Default" cmdparams="--id 17 -o %output% -" default="1" />
+    </presets>
+  </encoder>
+</encoders>
