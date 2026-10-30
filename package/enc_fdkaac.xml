@@ -3,7 +3,7 @@
 	<encoder Name="AAC-LC (FDK)" App="fdkaac-aimp.exe">
 		<description>
 			<inputformats type="autogen">
-				<autogen SampleRates="8000;11025;12000;16000;22050;24000;32000;44100;48000;64000;88200;96000" SampleFormats="16" Channels="1;2" />
+				<autogen SampleRates="8000;11025;12000;16000;22050;24000;32000;44100;48000;64000;88200;96000" SampleFormats="16" Channels="1;2;6;8" />
 			</inputformats>
 			<property name="Ext" value=".m4a" />
 			<property name="IgnoreLength" value="1" />

@@ -8,7 +8,7 @@ M = load(ROOT / "package/enc_fdkaac.xml")
 PROFILES = {"AAC-LC (FDK)": "2", "HE-AAC (FDK)": "5", "HE-AAC v2 (FDK)": "29"}
 LC_RATES = (8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000)
 HE_RATES = (16000, 22050, 24000, 32000, 44100, 48000)
-LC_CHANNELS = (1, 2)
+LC_CHANNELS = (1, 2, 6, 8)
 # Without IgnoreLength, AIMP writes a stream longer than 4290707456 bytes as two files, the second with "Part2" in its name.
 IGNORE_LENGTH = "1"
 
