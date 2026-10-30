@@ -24,3 +24,31 @@ def kit():
     if not path.is_dir():
         pytest.fail("tmp/probe-kit is missing: run `python3 -I probe/make_kit.py`")
     return path
+
+
+@pytest.fixture(scope="session")
+def wrapper_host_bin():
+    path = ROOT / "build/host/fdkaac-aimp"
+    if not path.exists():
+        pytest.fail(
+            "build/host/fdkaac-aimp is missing: run `mkdir -p build/host`, then "
+            "`cc -std=c11 -O2 -Wall -Wextra -Werror -D_GNU_SOURCE -o build/host/fdkaac-aimp wrapper/fdkaac-aimp.c`"
+        )
+    return path
+
+
+def built(name):
+    path = ROOT / "build/out" / name
+    if not path.exists():
+        pytest.fail(f"build/out/{name} is missing: run ./build.sh")
+    return path
+
+
+@pytest.fixture(scope="session")
+def fdkaac_bin():
+    return built("fdkaac")
+
+
+@pytest.fixture(scope="session")
+def wrapper_bin():
+    return built("fdkaac-aimp")
