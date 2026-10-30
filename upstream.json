@@ -1,0 +1,15 @@
+{
+  "package_revision": 0,
+  "source_date_epoch": 1791714862,
+  "sources": [
+    {"name": "fdkaac", "version": "1.0.9", "tag": "v1.0.9",
+     "commit": "1b311f7cda11ddabc11bb0e6230506796a6018c5",
+     "url": "https://github.com/nu774/fdkaac/archive/refs/tags/v1.0.9.tar.gz",
+     "file": "fdkaac-1.0.9.tar.gz", "sha256": "be6de0851c447d132e9bff0141068ee6fec6d37e21973ea9304480c68178058b"},
+    {"name": "fdk-aac", "version": "3.0.0", "tag": "v3.0.0",
+     "commit": "a68a51aa45d86a43c7b228e3d45624af09dcdd8d",
+     "url": "https://github.com/mstorsjo/fdk-aac/archive/refs/tags/v3.0.0.tar.gz",
+     "file": "fdk-aac-3.0.0.tar.gz", "sha256": "8538ea8f0f9915e460c106a13e1866a9e13c7ee48c1b67d0b2cf7b4e8159bd1a"}
+  ],
+  "image": {"name": "quay.io/pypa/manylinux_2_28_x86_64", "digest": "sha256:e0adf18521ad35192df733a6c62d35df7801957d24e0470238aacecfab2188a3", "python": "/opt/python/cp315-cp315/bin/python3"}
+}
