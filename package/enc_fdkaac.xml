@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<encoders generator="AIMP" version="1000" name="AAC/M4A Encoder (FDK) v1.0.9" author="" info="Using nu774's fdkaac (https://github.com/nu774/fdkaac) with the Fraunhofer FDK AAC library (https://github.com/mstorsjo/fdk-aac)">
+<encoders generator="AIMP" version="1000" name="AAC/M4A Encoder (FDK) v1.0.9" author="noctuum" info="Using nu774's fdkaac (https://github.com/nu774/fdkaac) with the Fraunhofer FDK AAC library (https://github.com/mstorsjo/fdk-aac)">
 	<encoder Name="AAC-LC (FDK)" App="fdkaac-aimp.exe">
 		<description>
 			<inputformats type="autogen">
@@ -9,6 +9,28 @@
 			<property name="IgnoreLength" value="1" />
 		</description>
 		<presets>
+			<preset name="CBR" cmdparams="-p 2 -b %bitrate% -I -S -o %output% -" default="1">
+				<var name="Bitrate" cmdparams="%bitrate%">
+					<val name="16 kbps" cmdparams="16" />
+					<val name="32 kbps" cmdparams="32" />
+					<val name="64 kbps" cmdparams="64" />
+					<val name="128 kbps" cmdparams="128" default="1" />
+					<val name="192 kbps" cmdparams="192" />
+					<val name="256 kbps" cmdparams="256" />
+					<val name="320 kbps" cmdparams="320" />
+					<val name="448 kbps" cmdparams="448" />
+					<val name="576 kbps" cmdparams="576" />
+				</var>
+			</preset>
+			<preset name="VBR" cmdparams="-p 2 -m %quality% -I -S -o %output% -">
+				<var name="Quality" cmdparams="%quality%">
+					<val name="1" cmdparams="1" />
+					<val name="2" cmdparams="2" />
+					<val name="3" cmdparams="3" default="1" />
+					<val name="4" cmdparams="4" />
+					<val name="5" cmdparams="5" />
+				</var>
+			</preset>
 		</presets>
 	</encoder>
 	<encoder Name="HE-AAC (FDK)" App="fdkaac-aimp.exe">
@@ -20,6 +42,23 @@
 			<property name="IgnoreLength" value="1" />
 		</description>
 		<presets>
+			<preset name="CBR" cmdparams="-p 5 -b %bitrate% -I -S -o %output% -" default="1">
+				<var name="Bitrate" cmdparams="%bitrate%">
+					<val name="16 kbps" cmdparams="16" />
+					<val name="32 kbps" cmdparams="32" />
+					<val name="64 kbps" cmdparams="64" />
+					<val name="128 kbps" cmdparams="128" default="1" />
+				</var>
+			</preset>
+			<preset name="VBR" cmdparams="-p 5 -m %quality% -I -S -o %output% -">
+				<var name="Quality" cmdparams="%quality%">
+					<val name="1" cmdparams="1" />
+					<val name="2" cmdparams="2" />
+					<val name="3" cmdparams="3" default="1" />
+					<val name="4" cmdparams="4" />
+					<val name="5" cmdparams="5" />
+				</var>
+			</preset>
 		</presets>
 	</encoder>
 	<encoder Name="HE-AAC v2 (FDK)" App="fdkaac-aimp.exe">
@@ -31,6 +70,22 @@
 			<property name="IgnoreLength" value="1" />
 		</description>
 		<presets>
+			<preset name="CBR" cmdparams="-p 29 -b %bitrate% -I -S -o %output% -" default="1">
+				<var name="Bitrate" cmdparams="%bitrate%">
+					<val name="16 kbps" cmdparams="16" />
+					<val name="32 kbps" cmdparams="32" />
+					<val name="64 kbps" cmdparams="64" default="1" />
+				</var>
+			</preset>
+			<preset name="VBR" cmdparams="-p 29 -m %quality% -I -S -o %output% -">
+				<var name="Quality" cmdparams="%quality%">
+					<val name="1" cmdparams="1" />
+					<val name="2" cmdparams="2" />
+					<val name="3" cmdparams="3" default="1" />
+					<val name="4" cmdparams="4" />
+					<val name="5" cmdparams="5" />
+				</var>
+			</preset>
 		</presets>
 	</encoder>
 </encoders>
