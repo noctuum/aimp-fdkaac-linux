@@ -2,6 +2,9 @@ from pathlib import Path
 
 import pytest
 
+# The asserts of check() report their values only in a module pytest rewrites.
+pytest.register_assert_rewrite("tests.helpers")
+
 ROOT = Path(__file__).resolve().parent.parent
 
 

@@ -8,6 +8,10 @@ WAVE_FORMAT_PCM = 0x0001
 WAVE_FORMAT_IEEE_FLOAT = 0x0003
 WAVE_FORMAT_EXTENSIBLE = 0xFFFE
 
+# AIMP sends 6 and 8 channels without a mask, in the speaker order of these masks.
+# fdkaac takes the same masks for a header that has none.
+AIMP_CHANNEL_MASKS = {6: 0x3F, 8: 0x63F}
+
 
 @dataclass(frozen=True)
 class WavInfo:
@@ -38,6 +42,11 @@ def wav_header(rate: int, channels: int, bits: int, *, float_samples: bool = Fal
     return (b"RIFF" + struct.pack("<I", riff_size) + b"WAVE"
             + b"fmt " + struct.pack("<I", len(fmt)) + fmt
             + b"data" + struct.pack("<I", data_size))
+
+
+def aimp_wav_header(rate: int, channels: int) -> bytes:
+    # The 16-bit header AIMP writes for every channel count: format tag 1, RIFF size 36, data size 0.
+    return wav_header(rate, channels, 16, riff_size=36)
 
 
 def parse_wav(data: bytes) -> WavInfo:
