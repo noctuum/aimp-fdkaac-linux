@@ -1,3 +1,5 @@
+import os
+import select
 import subprocess
 from pathlib import Path
 
@@ -74,3 +76,19 @@ def test_stream_without_riff_is_copied_raw(probe_bin, tmp_path):
     out = tmp_path / "raw.wav"
     run(probe_bin, b"garbage!" * 10, "-o", str(out), "-")
     assert report(out).get("riff") == "garb" and out.read_bytes() == b"garbage!" * 10
+
+
+def test_inherited_descriptors_are_listed_and_closed(probe_bin, tmp_path):
+    out = tmp_path / "fd.wav"
+    r, w = os.pipe()
+    env = {"PATH": "/usr/bin:/bin", "PROBE_REPORT_DIR": ""}
+    p = subprocess.Popen([probe_bin, "-o", str(out), "-"], stdin=subprocess.PIPE, pass_fds=(w,), env=env)
+    os.close(w)
+    try:
+        ready, _, _ = select.select([r], [], [], 5)
+        closed_while_running = bool(ready) and os.read(r, 1) == b""
+    finally:
+        p.communicate(wav_header(44100, 2, 16) + bytes(400), timeout=30)
+        os.close(r)
+    assert closed_while_running
+    assert any(v.startswith(f"{w} pipe:") for v in report(out).all("inherited-fd"))

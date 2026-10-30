@@ -3,6 +3,7 @@
  * encoder. It records its command line, its environment and the stream it
  * receives, and writes the audio back to OUTPUT as a WAV file.
  */
+#include <dirent.h>
 #include <errno.h>
 #include <signal.h>
 #include <stdarg.h>
@@ -72,6 +73,7 @@ static struct {
     int out_failed;
     char *error;
     struct timespec t0;
+    sbuf inherited;
 } g;
 
 static void out_of_memory(void)
@@ -225,6 +227,37 @@ static void set_error(const char *what, const char *path)
     sb_str(&e, strerror(err));
     g.error = e.p;
     fprintf(stderr, "probe: %s\n", g.error);
+}
+
+/*
+ * A host that starts encoders in parallel can leave each of them holding the
+ * pipes of the others, and a pipe held open elsewhere never reaches end of
+ * file. The probe records every descriptor above 2 it inherits and closes it.
+ */
+static void close_inherited(void)
+{
+    int fds[1024];
+    int n = 0;
+    DIR *d = opendir("/proc/self/fd");
+    if (!d)
+        return;
+    struct dirent *e;
+    while (n < 1024 && (e = readdir(d)) != NULL) {
+        int fd = atoi(e->d_name);
+        if (fd > 2 && fd != dirfd(d))
+            fds[n++] = fd;
+    }
+    closedir(d);
+    for (int i = 0; i < n; i++) {
+        char link[32];
+        snprintf(link, sizeof link, "/proc/self/fd/%d", fds[i]);
+        char *target = read_link(link);
+        sb_fmt(&g.inherited, "inherited-fd: %d ", fds[i]);
+        sb_text(&g.inherited, target ? target : "?");
+        sb_str(&g.inherited, "\n");
+        free(target);
+        close(fds[i]);
+    }
 }
 
 static void read_id3_frames(const unsigned char *t, size_t size)
@@ -530,6 +563,10 @@ static void build_report(sbuf *b, int done)
         free(target);
         sb_str(b, "\n");
     }
+    if (g.inherited.len)
+        sb_add(b, g.inherited.p, g.inherited.len);
+    else
+        sb_str(b, "inherited-fd: -\n");
 
     sb_str(b, "output: ");
     sb_wrapped(b, g.output);
@@ -631,6 +668,7 @@ static void write_report(int done)
 
 int main(int argc, char **argv)
 {
+    close_inherited();
     signal(SIGPIPE, SIG_IGN);
     clock_gettime(CLOCK_MONOTONIC, &g.t0);
     g.argc = argc;
